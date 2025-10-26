@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的漂亮网页</title>
+
+    <style>
+        /* 1. 全局样式：应用于整个页面 */
+        body {
+            /* 字体设置 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+                         Helvetica, Arial, sans-serif, "Apple Color Emoji", 
+                         "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 16px;      /* 基本字体大小 */
+            line-height: 1.6;     /* 行高，增加可读性 */
+            
+            /* 颜色设置 */
+            background-color: #f4f7f6;  /* 柔和的浅灰色背景 */
+            color: #333;               /* 深灰色文本，比纯黑更柔和 */
+            
+            /* 布局和间距 */
+            margin: 0;            /* 移除浏览器默认的外边距 */
+            padding: 20px;        /* 在页面边缘添加一些内边距 */
+        }
+
+        /* 2. 内容容器样式：用于居中和限制宽度 */
+        .container {
+            max-width: 800px;     /* 内容的最大宽度 */
+            margin: 20px auto;    /* 顶部/底部20px外边距，左右自动 (实现水平居中) */
+            padding: 30px;        /* 容器内部的间距 */
+            background-color: #ffffff;  /* 白色背景卡片 */
+            border-radius: 8px;   /* 圆角边框 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 添加轻微的阴影效果 */
+        }
+
+        /* 3. 标题 (h1) 样式 */
+        h1 {
+            color: #2c3e50;         /* 更深的标题颜色 */
+            font-size: 2.5em;      /* 字体大小 (2.5倍于基础字体大小) */
+            border-bottom: 2px solid #e0e0e0; /* 标题下的分隔线 */
+            padding-bottom: 10px;  /* 分隔线与文字的间距 */
+            margin-top: 0;         /* 移除容器顶部的多余间距 */
+        }
+
+        /* 4. 段落 (p) 样式 */
+        p {
+            margin-bottom: 1.2em; /* 段落之间的间距 */
+        }
+
+        /* 5. 链接 (a) 样式 */
+        a {
+            color: #3498db;            /* 醒目的蓝色链接 */
+            text-decoration: none;    /* 移除默认的下划线 */
+        }
+
+        /* 鼠标悬停在链接上时的样式 */
+        a:hover {
+            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+            color: #2980b9;            /* 悬停时颜色变深 */
+        }
+
+        /* 6. 按钮样式 (示例) */
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; /* 鼠标悬停时显示为手型 */
+            transition: background-color 0.3s ease; /* 平滑的颜色过渡效果 */
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+    </style>
+    </head>
+<body>
+
+    <div class="container">
+
+        <h1>欢迎来到我的网页！</h1>
+
+        <p>
+            这是使用 CSS 添加了样式的段落。如您所见，背景是浅灰色的，
+            而内容区域则是一个白色的“卡片”，并且在屏幕上水平居中。
+        </p>
+
+        <p>
+            我们还定义了字体、行高和颜色，使文本更易于阅读。
+            这是一个 <a href="#">示例链接</a>，看看鼠标悬停在它上面时的效果。
+        </p>
+
+        <p>
+            您可以随意修改上面 `<style>` 标签中的任何值，看看会发生什么变化。
+        </p>
+
+        <a href="#" class="button">这是一个按钮</a>
+
+    </div>
+
+</body>
+</html>

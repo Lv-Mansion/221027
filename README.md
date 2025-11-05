@@ -1,6 +1,3 @@
-# 221027
-My own website
-
 # 📡 通信系统项目 / Communication System Project
 
 ## 🧩 项目简介 / Project Overview

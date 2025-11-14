@@ -3,104 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My xyz web</title>
-
+    <title>通信工程专业专用网址</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"', '"Noto Color Emoji"'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* 1. 全局样式：应用于整个页面 */
-        body {
-            /* 字体设置 */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
-                         Helvetica, Arial, sans-serif, "Apple Color Emoji", 
-                         "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: 16px;      /* 基本字体大小 */
-            line-height: 1.6;     /* 行高，增加可读性 */
-            
-            /* 颜色设置 */
-            background-color: #f4f7f6;  /* 柔和的浅灰色背景 */
-            color: #333;               /* 深灰色文本，比纯黑更柔和 */
-            
-            /* 布局和间距 */
-            margin: 0;            /* 移除浏览器默认的外边距 */
-            padding: 20px;        /* 在页面边缘添加一些内边距 */
+        /* 简单的自定义样式，增加平滑过渡效果 */
+        .card-link {
+            transition: all 0.3s ease;
         }
-
-        /* 2. 内容容器样式：用于居中和限制宽度 */
-        .container {
-            max-width: 800px;     /* 内容的最大宽度 */
-            margin: 20px auto;    /* 顶部/底部20px外边距，左右自动 (实现水平居中) */
-            padding: 30px;        /* 容器内部的间距 */
-            background-color: #ffffff;  /* 白色背景卡片 */
-            border-radius: 8px;   /* 圆角边框 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 添加轻微的阴影效果 */
+        /* 深色模式下的悬停效果 */
+        .card-link:hover {
+            transform: translateY(-4px);
+            /* 增加更明显的悬停阴影，但保持深色调 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
-
-        /* 3. 标题 (h1) 样式 */
-        h1 {
-            color: #2c3e50;         /* 更深的标题颜色 */
-            font-size: 2.5em;      /* 字体大小 (2.5倍于基础字体大小) */
-            border-bottom: 2px solid #e0e0e0; /* 标题下的分隔线 */
-            padding-bottom: 10px;  /* 分隔线与文字的间距 */
-            margin-top: 0;         /* 移除容器顶部的多余间距 */
-        }
-
-        /* 4. 段落 (p) 样式 */
-        p {
-            margin-bottom: 1.2em; /* 段落之间的间距 */
-        }
-
-        /* 5. 链接 (a) 样式 */
-        a {
-            color: #3498db;            /* 醒目的蓝色链接 */
-            text-decoration: none;    /* 移除默认的下划线 */
-        }
-
-        /* 鼠标悬停在链接上时的样式 */
-        a:hover {
-            text-decoration: underline; /* 鼠标悬停时添加下划线 */
-            color: #2980b9;            /* 悬停时颜色变深 */
-        }
-
-        /* 6. 按钮样式 (示例) */
-        .button {
-            display: inline-block;
-            padding: 12px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #ffffff;
-            background-color: #3498db;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer; /* 鼠标悬停时显示为手型 */
-            transition: background-color 0.3s ease; /* 平滑的颜色过渡效果 */
-        }
-
-        .button:hover {
-            background-color: #2980b9;
-        }
-
     </style>
-    </head>
-<body>
+</head>
+<!-- 主体背景设置为黑色，文字颜色设置为浅灰色以提高对比度 -->
+<body class="bg-gray-900 font-sans leading-normal tracking-normal text-gray-100">
 
-    <div class="container">
+    <div class="container mx-auto max-w-5xl p-5 md:p-10">
 
-        <h1>欢迎来到我的网页！</h1>
+        <!-- 网页标题 -->
+        <header class="text-center mb-12 border-b border-gray-700 pb-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white">
+                通信工程专业专用网址
+            </h1>
+            <p class="text-xl text-blue-400 mt-3">
+                精选学术与日常学习资源
+            </p>
+        </header>
 
-        <p>
-            这是使用 CSS 添加了样式的段落。如您所见，背景是浅灰色的，
-            而内容区域则是一个白色的“卡片”，并且在屏幕上水平居中。
-        </p>
+        <!-- ============================================== -->
+        <!-- 类别 1: 科技文献 -->
+        <!-- ============================================== -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">
+                科技文献
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <p>
-            我们还定义了字体、行高和颜色，使文本更易于阅读。
-            这是一个 <a href="#">示例链接</a>，看看鼠标悬停在它上面时的效果。
-        </p>
+                <!-- 卡片 1: IEEE Signal Processing Magazine -->
+                <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=79" target="_blank" rel="noopener noreferrer" 
+                   class="card-link block bg-gray-800 rounded-xl shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50 border border-gray-700">
+                    <div class="p-6">
+                        <!-- 卡片图标 -->
+                        <div class="flex items-center justify-center h-14 w-14 rounded-full bg-blue-900/50 text-blue-400 mb-4">
+                            <!-- 闪电/信号图标 -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">
+                            IEEE Signal Processing Magazine
+                        </h3>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            信号处理领域的顶级期刊，提供深入的教程、评论和行业动态，是学习信号处理最新进展的绝佳资源。
+                        </p>
+                        <div class="text-yellow-400 font-medium inline-flex items-center">
+                            访问期刊
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                    </div>
+                </a>
 
-        <p>
-            您可以随意修改上面 `<style>` 标签中的任何值，看看会发生什么变化。
-        </p>
+                <!-- 卡片 2: IEEE Communications Surveys & Tutorials -->
+                <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=9739" target="_blank" rel="noopener noreferrer" 
+                   class="card-link block bg-gray-800 rounded-xl shadow-lg hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-yellow-500 focus:ring-opacity-50 border border-gray-700">
+                    <div class="p-6">
+                        <!-- 卡片图标 -->
+                        <div class="flex items-center justify-center h-14 w-14 rounded-full bg-green-900/50 text-green-400 mb-4">
+                            <!-- 聊天/调研图标 -->
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white mb-2">
+                            IEEE Communications Surveys & Tutorials
+                        </h3>
+                        <p class="text-gray-400 mb-4 text-sm">
+                            通信领域的高影响力综述期刊，提供对各项通信技术全面且深入的概述，是掌握学科体系的最佳选择。
+                        </p>
+                        <div class="text-yellow-400 font-medium inline-flex items-center">
+                            访问期刊
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </div>
+                    </div>
+                </a>
 
-        <a href="#" class="button">这是一个按钮</a>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 类别 2: 日常学习 (占位符) -->
+        <!-- ============================================== -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">
+                日常学习
+            </h2>
+            <!-- 您可以在这里添加课程网站、实验平台、或优秀博客链接 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+                    <h3 class="text-xl font-semibold text-white mb-2">课程资源/实验平台</h3>
+                    <p class="text-gray-400 text-sm">
+                        这里可添加您所在学校的教务系统、慕课平台或专业实验平台的链接。
+                    </p>
+                    <a href="#" class="text-sm text-yellow-400 mt-2 block hover:underline">添加您的链接...</a>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+                    <h3 class="text-xl font-semibold text-white mb-2">编程/工具学习</h3>
+                    <p class="text-gray-400 text-sm">
+                        例如：GitHub, Stack Overflow, Python/MATLAB文档，用于日常编程和工具学习。
+                    </p>
+                    <a href="#" class="text-sm text-yellow-400 mt-2 block hover:underline">添加您的链接...</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="text-center mt-12 pt-4 border-t border-gray-700 text-gray-500">
+            <p>&copy; 2025 通信工程专业导航。深色模式启动。</p>
+        </footer>
 
     </div>
 

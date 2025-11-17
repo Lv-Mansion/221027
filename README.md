@@ -1,7 +1,7 @@
-# 📡 通信系统网站 / Communication Website
+# 📡 通信工程网站 / Communication Engineering Website
 
 ## 🧩 项目简介 / Project Overview
-本项目旨在建立一个通信系统专业网址，储存可能会用到的网站等。  
+本项目旨在建立一个通信工程/信息与通信工程专用网址，储存可能会用到的网站等。  
 通过tailwindhtml和CSS实现网页设计，并呈现在https://221027.pages.dev/网页中。  
 
 This project aims to establish a dedicated website for the Communication Systems major to store useful links and related resources.<br>

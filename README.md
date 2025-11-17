@@ -1,34 +1,24 @@
-# 📡 通信系统项目 / Communication System Project
+# 📡 通信系统网站 / Communication Website
 
 ## 🧩 项目简介 / Project Overview
-本项目旨在实现并分析一个通信系统的关键模块（例如调制解调、信道建模、误码率分析等）。  
-通过编程实现核心算法，并进行性能仿真与结果可视化。  
+本项目旨在建立一个通信系统专业网址，储存可能会用到的网站等。  
+通过tailwindhtml和CSS实现网页设计，并呈现在https://221027.pages.dev/网页中。  
 
-This project implements and analyzes key components of a communication system  
-(such as modulation/demodulation, channel modeling, and BER analysis).  
-It includes simulation, performance evaluation, and visualization.
+This project aims to establish a dedicated website for the Communication Systems major to store useful links and related resources.
+The webpage is designed using HTML and CSS and is hosted at https://221027.pages.dev/.
 
 ---
 
 ## 🚀 功能概述 / Features
-- 实现数字调制方式（如 BPSK / QPSK / QAM）  
-- 模拟 AWGN 或 Rayleigh 信道  
-- 绘制误码率（BER）随信噪比（SNR）的变化曲线  
-- 可扩展至 MIMO、OFDM 或自定义算法模块  
+- 部分文献网站（如 IEEE Xxplore / IEEE Communication）  
+- 书籍网站(如 z-library)  
+- 未完待续    
 
----
-
-## 🧠 理论背景 / Theoretical Background
-该项目基于经典的通信系统模型：  
-发射端 → 信道 → 接收端  
-信号经过调制、传输、加噪声、解调与检测过程。
-
-The project follows the standard digital communication model:  
-Transmitter → Channel → Receiver  
-including modulation, noise addition, demodulation, and detection.
+Some literature websites (such as IEEE Xplore / IEEE Communications)
+Book websites (such as Z-Library)
+To be continued
 
 ---
 
 ## ⚙️ 环境配置 / Environment Setup
-- **编程语言 / Language:** Python 3.x  
-- **依赖库 / Dependencies:**  
+- **编程语言 / Language:** tailwindhtml CSS

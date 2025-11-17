@@ -10,13 +10,13 @@ The webpage is designed using HTML and CSS and is hosted at https://221027.pages
 ---
 
 ## 🚀 功能概述 / Features
-- 部分文献网站（如 IEEE Xxplore / IEEE Communication）  
+- 部分文献网站（如 IEEE Xplore / IEEE Communication）  
 - 书籍网站(如 z-library)  
 - 未完待续    
 
-Some literature websites (such as IEEE Xplore / IEEE Communications)<br>
-Book websites (such as Z-Library)<br>
-To be continued
+- Some literature websites (such as IEEE Xplore / IEEE Communications)<br>
+- Book websites (such as Z-Library)<br>
+- To be continued
 
 ---
 

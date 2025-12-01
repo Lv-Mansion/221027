@@ -1,5 +1,7 @@
-// 从数据模块导入初始数据和图标
-import { initialLinks, ICONS, DEFAULT_ICON_NAME } from './data.js';
+// app.js (完整替换)
+
+// 从数据模块导入初始数据、图标和新的版本号
+import { initialLinks, ICONS, DEFAULT_ICON_NAME, DATA_VERSION } from './data.js';
 
 // --- 全局DOM元素 ---
 const modal = document.getElementById('add-link-modal');
@@ -13,19 +15,26 @@ const mainContainer = document.querySelector('.container');
 
 let currentEditId = null;
 
-// --- 数据存储函数 ---
+// --- 数据存储函数 (已加入版本控制) ---
 const getLinks = () => {
+    const savedVersion = localStorage.getItem('commEngPortalVersion');
     const linksJson = localStorage.getItem('commEngPortalLinks');
-    if (!linksJson) {
-        // **关键修复**: 如果本地存储为空，使用初始数据填充
-        saveLinks(initialLinks);
+
+    // 如果版本不匹配，或者本地根本没有数据，则强制使用data.js的初始数据
+    if (savedVersion !== DATA_VERSION || !linksJson) {
+        console.log(`Data version mismatch or no local data. Updating to version ${DATA_VERSION}.`);
+        saveLinks(initialLinks); // 保存新数据和新版本号
         return initialLinks;
     }
+    
+    // 如果版本匹配，则安全地使用本地数据
     return JSON.parse(linksJson);
 };
 
 const saveLinks = (links) => {
     localStorage.setItem('commEngPortalLinks', JSON.stringify(links));
+    // 每次保存数据时，都把当前的数据版本号也存进去
+    localStorage.setItem('commEngPortalVersion', DATA_VERSION);
 };
 
 // --- 核心功能函数 ---
@@ -168,17 +177,19 @@ mainContainer.addEventListener('click', (event) => {
     }
 });
 
-// --- 初始化 ---
-populateIconSelector();
-renderAllCards();
-
 // --- 恢复默认设置功能 ---
 const resetBtn = document.getElementById('reset-btn');
 if (resetBtn) {
     resetBtn.addEventListener('click', () => {
         if (confirm('您确定要恢复到默认链接设置吗？所有您自己添加或修改的链接都将丢失。')) {
+            // 只需移除links，下次加载时版本不匹配会自动恢复
             localStorage.removeItem('commEngPortalLinks');
+            localStorage.removeItem('commEngPortalVersion');
             location.reload(); // 重新加载页面
         }
     });
 }
+
+// --- 初始化 ---
+populateIconSelector();
+renderAllCards();

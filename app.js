@@ -1,4 +1,4 @@
-// app.js (精修版)
+// app.js (最终版)
 
 import { initialLinks, ICONS, CATEGORIES, DEFAULT_ICON_NAME } from './data.js';
 
@@ -48,16 +48,13 @@ const getIconHTML = (iconIdentifier, altText, className) => {
     if (iconIdentifier.trim().startsWith('<svg')) {
         return iconIdentifier.replace('class="w-8 h-8"', `class="${className}"`);
     }
-    return `<img src="${escapeHTML(iconIdentifier)}" alt="${escapeHTML(altText)} icon" class="${className}">`;
+    return `<img src="${escapeHTML(iconIdentifier)}" alt="${escapeHTML(altText)} icon" class="${className} object-contain">`;
 };
 
 const renderCard = (linkData) => {
     const { id, title, url, desc, categoryId, iconName } = linkData;
     const categoryElement = document.getElementById(categoryId)?.querySelector('.card-grid');
-    if (!categoryElement) {
-        console.warn(`Category with ID "${categoryId}" not found for link "${title}".`);
-        return;
-    }
+    if (!categoryElement) return;
     
     document.querySelector(`[data-id="${id}"]`)?.remove();
 
@@ -66,7 +63,7 @@ const renderCard = (linkData) => {
     cardWrapper.dataset.id = id;
 
     const iconIdentifier = ICONS[iconName] || ICONS[DEFAULT_ICON_NAME];
-    const iconHTML = getIconHTML(iconIdentifier, title, 'w-8 h-8 object-contain');
+    const iconHTML = getIconHTML(iconIdentifier, title, 'w-8 h-8');
 
     cardWrapper.innerHTML = `
         <a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" class="block p-6 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400">
@@ -85,11 +82,9 @@ const renderCard = (linkData) => {
     categoryElement.appendChild(cardWrapper);
 };
 
-// ★ 新增：渲染所有分类和卡片的总函数
 const renderApp = () => {
     categoriesContainer.innerHTML = '';
     
-    // 1. 先根据 data.js 创建所有分类的 HTML 结构
     CATEGORIES.forEach(cat => {
         const section = document.createElement('section');
         section.id = cat.id;
@@ -100,13 +95,10 @@ const renderApp = () => {
         categoriesContainer.appendChild(section);
     });
 
-    // 2. 再将所有卡片渲染到对应的分类中
     getLinks().forEach(renderCard);
 };
 
 // --- 初始化与事件监听器 ---
-
-// ★ 优化：动态填充分类下拉菜单
 const populateCategorySelect = () => {
     categorySelect.innerHTML = '';
     CATEGORIES.forEach(cat => {
@@ -124,7 +116,7 @@ const populateIconSelector = () => {
         iconWrapper.className = 'icon-option';
         iconWrapper.dataset.iconName = name;
         const iconIdentifier = ICONS[name];
-        iconWrapper.innerHTML = getIconHTML(iconIdentifier, name, 'w-6 h-6 mx-auto object-contain');
+        iconWrapper.innerHTML = getIconHTML(iconIdentifier, name, 'w-6 h-6');
         iconSelectorGrid.appendChild(iconWrapper);
     }
 };
@@ -191,7 +183,7 @@ addLinkForm.addEventListener('submit', (e) => {
         links.push(newOrUpdatedLink);
     }
     saveLinks(links);
-    renderCard(newOrUpdatedLink); // 只重新渲染被修改的卡片，更高效
+    renderCard(newOrUpdatedLink);
     hideModal();
 });
 
@@ -218,10 +210,9 @@ document.getElementById('reset-btn')?.addEventListener('click', () => {
     }
 });
 
-// ★ 新增：自动更新页脚年份
 document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
 // --- App Initialization ---
 populateIconSelector();
 populateCategorySelect();
-renderApp(); // <- 调用新的主渲染函数
+renderApp();

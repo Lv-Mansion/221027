@@ -3,85 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一个为信息与通信工程学科精选的学术与日常学习资源导航网站。">
     <title>信息与通信工程学科专用网址</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     
-    <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 引入自定义样式 -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-900 font-sans leading-normal tracking-normal text-gray-100">
 
     <div class="container mx-auto max-w-5xl p-5 md:p-10">
 
-        <!-- 网页标题 -->
         <header class="text-center mb-12 border-b border-gray-700 pb-4">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white">信息与通信工程学科专用网址</h1>
             <p class="text-xl text-blue-400 mt-3">精选学术与日常学习资源</p>
         </header>
 
-        <!-- 类别容器 (内容将由 app.js 动态填充) -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">科技文献</h2>
-            <div id="category-tech" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        </section>
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">AI</h2>
-            <div id="category-ai" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        </section>
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">资料</h2>
-            <div id="category-data" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        </section>
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">网站所在</h2>
-            <div id="category-repo" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        </section>
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">日常学习</h2>
-            <div id="category-study" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-        </section>
+        <!-- ★ 简化：所有分类将由JS动态生成到这里 -->
+        <main id="categories-container" class="space-y-12"></main>
 
-        <!-- 页脚 -->
         <footer class="text-center mt-12 pt-4 border-t border-gray-700 text-gray-500">
-            <p>&copy; 2025 通信工程专业导航。深色模式启动。</p>
-            <button id="reset-btn" class="mt-2 text-sm text-gray-400 hover:text-yellow-400 transition">恢复默认设置</button>
+            <!-- ★ 优化：年份将由JS自动填充 -->
+            <p>&copy; <span id="copyright-year"></span> 通信工程专业导航。深色模式启动。</p>
+            <button id="reset-btn" class="mt-2 text-sm text-gray-400 hover:text-yellow-400 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded">恢复默认设置</button>
         </footer>
 
     </div>
 
-    <!-- 添加链接按钮 -->
-    <button id="show-modal-btn" class="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-4xl pb-1 transition-transform transform hover:scale-110">+</button>
+    <!-- ★ 优化：为按钮添加 aria-label 提升无障碍访问性 -->
+    <button id="show-modal-btn" aria-label="添加新链接" class="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-4xl pb-1 transition-transform transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-yellow-400">+</button>
 
-    <!-- 添加/编辑链接的模态框 -->
     <div id="add-link-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 opacity-0 pointer-events-none z-50">
         <div class="bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-lg border border-gray-700" onclick="event.stopPropagation()">
             <h3 id="modal-title" class="text-2xl font-semibold text-white mb-4"></h3>
             <form id="add-link-form">
                 <div class="space-y-4">
+                    <!-- 表单内容保持不变 -->
                     <div>
                         <label for="link-title" class="block text-sm font-medium text-gray-300 mb-1">标题</label>
-                        <input type="text" id="link-title" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white" required>
+                        <input type="text" id="link-title" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" required>
                     </div>
                     <div>
                         <label for="link-url" class="block text-sm font-medium text-gray-300 mb-1">网址 (URL)</label>
-                        <input type="url" id="link-url" placeholder="https://..." class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white" required>
+                        <input type="url" id="link-url" placeholder="https://..." class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" required>
                     </div>
                     <div>
                         <label for="link-desc" class="block text-sm font-medium text-gray-300 mb-1">描述</label>
-                        <textarea id="link-desc" rows="3" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white" required></textarea>
+                        <textarea id="link-desc" rows="3" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" required></textarea>
                     </div>
                     <div>
                         <label for="link-category" class="block text-sm font-medium text-gray-300 mb-1">类别</label>
-                        <select id="link-category" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white">
-                            <option value="category-tech">科技文献</option>
-                            <option value="category-ai">AI</option>
-                            <option value="category-data">资料</option>
-                            <option value="category-repo">网站所在</option>
-                            <option value="category-study">日常学习</option>
-                        </select>
+                        <select id="link-category" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none"></select>
                     </div>
                     <div class="pt-1">
                         <label class="block text-sm font-medium text-gray-300 mb-2">选择图标</label>
@@ -89,18 +61,13 @@
                     </div>
                 </div>
                 <div class="flex justify-end space-x-3 mt-6">
-                    <button type="button" id="cancel-btn" class="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition">取消</button>
-                    <button type="submit" id="submit-btn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg transition"></button>
+                    <button type="button" id="cancel-btn" class="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-gray-400">取消</button>
+                    <button type="submit" id="submit-btn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-lg transition focus:outline-none focus:ring-2 focus:ring-yellow-300"></button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- 引入核心JS，`type="module"` 是关键 -->
     <script src="app.js" type="module"></script>
 </body>
 </html>
-
-
-
-

@@ -3,12 +3,10 @@ html {
     scroll-behavior: smooth;
 }
 
-/* ★ 新增：为键盘用户提供清晰的焦点轮廓 */
 :focus-visible {
     outline: 2px solid #FBBF24; /* yellow-400 */
     outline-offset: 2px;
 }
-/* 移除默认的模糊轮廓 */
 :focus {
     outline: none;
 }
@@ -16,10 +14,10 @@ html {
 /* --- 卡片通用样式 --- */
 .card-link-wrapper {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* 为了定位操作按钮 */
+    position: relative;
 }
 .card-link-wrapper:hover {
-    transform: translateY(-5px); /* 稍微增加悬浮距离 */
+    transform: translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
@@ -36,7 +34,7 @@ html {
     display: flex;
     gap: 8px;
     opacity: 0;
-    transform: translateY(-10px); /* ★ 新增：从上方滑入效果 */
+    transform: translateY(-10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
 }
@@ -62,7 +60,7 @@ html {
     z-index: 10;
 }
 .card-action-btn:hover {
-    transform: scale(1.15); /* 稍微增加悬停放大效果 */
+    transform: scale(1.15);
 }
 .card-action-btn.delete:hover {
     background-color: #EF4444; /* red-500 */

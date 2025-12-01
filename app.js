@@ -1,8 +1,8 @@
-// app.js (完整替换，以支持SVG/PNG混合图标)
+// app.js (精修版)
 
-import { initialLinks, ICONS, DEFAULT_ICON_NAME } from './data.js';
+import { initialLinks, ICONS, CATEGORIES, DEFAULT_ICON_NAME } from './data.js';
 
-// --- 自动数据更新逻辑 (无需版本号) ---
+// --- 自动数据更新逻辑 ---
 const generateDataHash = (str) => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -22,15 +22,15 @@ const showModalBtn = document.getElementById('show-modal-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 const addLinkForm = document.getElementById('add-link-form');
 const iconSelectorGrid = document.getElementById('icon-selector-grid');
-const mainContainer = document.querySelector('.container');
+const categoriesContainer = document.getElementById('categories-container');
+const categorySelect = document.getElementById('link-category');
 let currentEditId = null;
 
-// --- 数据存储函数 (使用自动哈希检查) ---
+// --- 数据存储函数 ---
 const getLinks = () => {
     const savedDataHash = localStorage.getItem('commEngPortalDataHash');
     const linksJson = localStorage.getItem('commEngPortalLinks');
     if (savedDataHash !== newDataHash || !linksJson) {
-        console.log(`Data has been updated. Reloading from data.js.`);
         saveLinks(initialLinks);
         return initialLinks;
     }
@@ -41,27 +41,24 @@ const saveLinks = (links) => {
     localStorage.setItem('commEngPortalDataHash', newDataHash);
 };
 
-// --- 核心功能函数 ---
+// --- 核心渲染函数 ---
 const escapeHTML = (str) => str ? str.replace(/[&<>"']/g, m => ({'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#39;'}[m])) : '';
 
-// ★★★ 新的智能图标渲染函数 ★★★
-// 这个函数会判断图标是SVG代码还是图片路径，并返回正确的HTML
 const getIconHTML = (iconIdentifier, altText, className) => {
     if (iconIdentifier.trim().startsWith('<svg')) {
-        // 如果是SVG代码，替换类名并直接返回
         return iconIdentifier.replace('class="w-8 h-8"', `class="${className}"`);
-    } else {
-        // 否则，认为是图片路径，创建一个<img>标签
-        return `<img src="${escapeHTML(iconIdentifier)}" alt="${escapeHTML(altText)} icon" class="${className}">`;
     }
+    return `<img src="${escapeHTML(iconIdentifier)}" alt="${escapeHTML(altText)} icon" class="${className}">`;
 };
 
-// ★★★ 已更新：renderCard 函数，使用新的 getIconHTML ★★★
 const renderCard = (linkData) => {
     const { id, title, url, desc, categoryId, iconName } = linkData;
-    const categoryElement = document.getElementById(categoryId);
-    if (!categoryElement) return;
-
+    const categoryElement = document.getElementById(categoryId)?.querySelector('.card-grid');
+    if (!categoryElement) {
+        console.warn(`Category with ID "${categoryId}" not found for link "${title}".`);
+        return;
+    }
+    
     document.querySelector(`[data-id="${id}"]`)?.remove();
 
     const cardWrapper = document.createElement('div');
@@ -69,11 +66,10 @@ const renderCard = (linkData) => {
     cardWrapper.dataset.id = id;
 
     const iconIdentifier = ICONS[iconName] || ICONS[DEFAULT_ICON_NAME];
-    // 使用新函数生成图标HTML，主卡片的图标是 w-8 h-8
     const iconHTML = getIconHTML(iconIdentifier, title, 'w-8 h-8 object-contain');
 
     cardWrapper.innerHTML = `
-        <a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" class="block p-6">
+        <a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" class="block p-6 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400">
             <div class="flex items-center justify-center h-14 w-14 rounded-full bg-gray-700 text-gray-300 mb-4">${iconHTML}</div>
             <h3 class="text-xl font-semibold text-white mb-2">${escapeHTML(title)}</h3>
             <p class="text-gray-400 mb-4 text-sm">${escapeHTML(desc)}</p>
@@ -82,19 +78,45 @@ const renderCard = (linkData) => {
             </div>
         </a>
         <div class="card-actions">
-             <button class="card-action-btn edit" title="编辑" data-action="edit" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg></button>
-            <button class="card-action-btn delete" title="删除" data-action="delete" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+            <button class="card-action-btn edit" aria-label="编辑链接" title="编辑" data-action="edit" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg></button>
+            <button class="card-action-btn delete" aria-label="删除链接" title="删除" data-action="delete" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
         </div>
     `;
     categoryElement.appendChild(cardWrapper);
 };
 
-const renderAllCards = () => {
-    document.querySelectorAll('[id^="category-"]').forEach(c => c.innerHTML = '');
+// ★ 新增：渲染所有分类和卡片的总函数
+const renderApp = () => {
+    categoriesContainer.innerHTML = '';
+    
+    // 1. 先根据 data.js 创建所有分类的 HTML 结构
+    CATEGORIES.forEach(cat => {
+        const section = document.createElement('section');
+        section.id = cat.id;
+        section.innerHTML = `
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-yellow-400 pl-3">${escapeHTML(cat.title)}</h2>
+            <div class="card-grid grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+        `;
+        categoriesContainer.appendChild(section);
+    });
+
+    // 2. 再将所有卡片渲染到对应的分类中
     getLinks().forEach(renderCard);
 };
 
-// ★★★ 已更新：populateIconSelector 函数，使用新的 getIconHTML ★★★
+// --- 初始化与事件监听器 ---
+
+// ★ 优化：动态填充分类下拉菜单
+const populateCategorySelect = () => {
+    categorySelect.innerHTML = '';
+    CATEGORIES.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.title;
+        categorySelect.appendChild(option);
+    });
+};
+
 const populateIconSelector = () => {
     iconSelectorGrid.innerHTML = '';
     for (const name in ICONS) {
@@ -102,14 +124,11 @@ const populateIconSelector = () => {
         iconWrapper.className = 'icon-option';
         iconWrapper.dataset.iconName = name;
         const iconIdentifier = ICONS[name];
-        // 弹窗里的图标是 w-6 h-6
         iconWrapper.innerHTML = getIconHTML(iconIdentifier, name, 'w-6 h-6 mx-auto object-contain');
         iconSelectorGrid.appendChild(iconWrapper);
     }
 };
 
-// --- 模态框与事件监听器 (这部分代码无需修改) ---
-// ... (后面的所有代码都和之前一样，无需手动修改) ...
 const showModal = (mode = 'add', linkId = null) => {
     addLinkForm.reset();
     document.querySelectorAll('.icon-option.selected').forEach(el => el.classList.remove('selected'));
@@ -122,7 +141,7 @@ const showModal = (mode = 'add', linkId = null) => {
             document.getElementById('link-title').value = linkData.title;
             document.getElementById('link-url').value = linkData.url;
             document.getElementById('link-desc').value = linkData.desc;
-            document.getElementById('link-category').value = linkData.categoryId;
+            categorySelect.value = linkData.categoryId;
             document.querySelector(`[data-icon-name="${linkData.iconName}"]`)?.classList.add('selected');
         }
     } else {
@@ -130,19 +149,24 @@ const showModal = (mode = 'add', linkId = null) => {
         modalTitle.textContent = '添加新链接';
         submitBtn.textContent = '添加链接';
         document.querySelector(`[data-icon-name="${DEFAULT_ICON_NAME}"]`)?.classList.add('selected');
+        categorySelect.value = CATEGORIES[0]?.id || '';
     }
     modal.classList.remove('opacity-0', 'pointer-events-none');
 };
+
 const hideModal = () => modal.classList.add('opacity-0', 'pointer-events-none');
+
 showModalBtn.addEventListener('click', () => showModal('add'));
 cancelBtn.addEventListener('click', hideModal);
 modal.addEventListener('click', (e) => (e.target === modal) && hideModal());
+
 iconSelectorGrid.addEventListener('click', (e) => {
     const clickedIcon = e.target.closest('.icon-option');
     if (!clickedIcon) return;
     iconSelectorGrid.querySelectorAll('.icon-option.selected').forEach(icon => icon.classList.remove('selected'));
     clickedIcon.classList.add('selected');
 });
+
 addLinkForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const selectedIconEl = iconSelectorGrid.querySelector('.icon-option.selected');
@@ -151,7 +175,7 @@ addLinkForm.addEventListener('submit', (e) => {
         title: document.getElementById('link-title').value,
         url: document.getElementById('link-url').value,
         desc: document.getElementById('link-desc').value,
-        categoryId: document.getElementById('link-category').value,
+        categoryId: categorySelect.value,
         iconName: iconName,
     };
     let links = getLinks();
@@ -167,10 +191,11 @@ addLinkForm.addEventListener('submit', (e) => {
         links.push(newOrUpdatedLink);
     }
     saveLinks(links);
-    renderCard(newOrUpdatedLink);
+    renderCard(newOrUpdatedLink); // 只重新渲染被修改的卡片，更高效
     hideModal();
 });
-mainContainer.addEventListener('click', (event) => {
+
+categoriesContainer.addEventListener('click', (event) => {
     const button = event.target.closest('[data-action]');
     if (!button) return;
     const { action, id } = button.dataset;
@@ -184,17 +209,19 @@ mainContainer.addEventListener('click', (event) => {
         }
     }
 });
-const resetBtn = document.getElementById('reset-btn');
-if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-        if (confirm('您确定要恢复到默认链接设置吗？所有您自己添加或修改的链接都将丢失。')) {
-            localStorage.removeItem('commEngPortalLinks');
-            localStorage.removeItem('commEngPortalDataHash');
-            location.reload();
-        }
-    });
-}
 
-// --- 初始化 ---
+document.getElementById('reset-btn')?.addEventListener('click', () => {
+    if (confirm('您确定要恢复到默认链接设置吗？所有您自己添加或修改的链接都将丢失。')) {
+        localStorage.removeItem('commEngPortalLinks');
+        localStorage.removeItem('commEngPortalDataHash');
+        location.reload();
+    }
+});
+
+// ★ 新增：自动更新页脚年份
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+// --- App Initialization ---
 populateIconSelector();
-renderAllCards();
+populateCategorySelect();
+renderApp(); // <- 调用新的主渲染函数

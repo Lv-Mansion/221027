@@ -171,3 +171,14 @@ mainContainer.addEventListener('click', (event) => {
 // --- 初始化 ---
 populateIconSelector();
 renderAllCards();
+
+// --- 恢复默认设置功能 ---
+const resetBtn = document.getElementById('reset-btn');
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        if (confirm('您确定要恢复到默认链接设置吗？所有您自己添加或修改的链接都将丢失。')) {
+            localStorage.removeItem('commEngPortalLinks');
+            location.reload(); // 重新加载页面
+        }
+    });
+}

@@ -19,18 +19,15 @@
             <p class="text-xl text-blue-400 mt-3">精选学术与日常学习资源</p>
         </header>
 
-        <!-- ★ 简化：所有分类将由JS动态生成到这里 -->
         <main id="categories-container" class="space-y-12"></main>
 
         <footer class="text-center mt-12 pt-4 border-t border-gray-700 text-gray-500">
-            <!-- ★ 优化：年份将由JS自动填充 -->
             <p>&copy; <span id="copyright-year"></span> 通信工程专业导航。深色模式启动。</p>
             <button id="reset-btn" class="mt-2 text-sm text-gray-400 hover:text-yellow-400 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded">恢复默认设置</button>
         </footer>
 
     </div>
 
-    <!-- ★ 优化：为按钮添加 aria-label 提升无障碍访问性 -->
     <button id="show-modal-btn" aria-label="添加新链接" class="fixed bottom-8 right-8 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold w-16 h-16 rounded-full shadow-lg flex items-center justify-center text-4xl pb-1 transition-transform transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-yellow-400">+</button>
 
     <div id="add-link-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 opacity-0 pointer-events-none z-50">
@@ -38,7 +35,6 @@
             <h3 id="modal-title" class="text-2xl font-semibold text-white mb-4"></h3>
             <form id="add-link-form">
                 <div class="space-y-4">
-                    <!-- 表单内容保持不变 -->
                     <div>
                         <label for="link-title" class="block text-sm font-medium text-gray-300 mb-1">标题</label>
                         <input type="text" id="link-title" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 outline-none" required>

@@ -34,14 +34,14 @@ export const DEFAULT_ICON_NAME = 'globe';
 
 // 初始链接数据
 export const initialLinks = [
-    { id: 'preset-1', title: 'IEEE Signal Processing Magazine', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=79', desc: '信号处理领域的顶级期刊，提供深入的教程、评论和行业动态。', categoryId: 'category-tech', iconName: 'signal' },
-    { id: 'preset-2', title: 'IEEE Communications Surveys & Tutorials', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=9739', desc: '通信领域的高影响力综述期刊，提供对各项通信技术全面且深入的概述。', categoryId: 'category-tech', iconName: 'chat' },
-    { id: 'preset-3', title: 'ChatGPT', url: 'https://chatgpt.com/', desc: 'OpenAI 的旗舰语言模型，是学习与体验先进对话式 AI 技术的理想平台。', categoryId: 'category-ai', iconName: 'openai' },
-    { id: 'preset-4', title: 'Gemini', url: 'https://gemini.google.com/app', desc: '谷歌的跨模态人工智能，能够无缝处理和理解文字、图像、音频等多种数据格式。', categoryId: 'category-ai', iconName: 'star' },
-    { id: 'preset-5', title: 'Google AI Studio', url: 'https://aistudio.google.com/', desc: '提供快速的原型构建、直观的提示词工程和无缝的API集成。', categoryId: 'category-ai', iconName: 'aistudio' },
-    { id: 'preset-6', title: 'Grok', url: 'https://grok.com', desc: '人工智能领域的顶级AI助手，提供深入的教程、评论和行业动态。', categoryId: 'category-ai', iconName: 'grok' },
-    { id: 'preset-7', title: 'Z-Library', url: 'https://z-library.sk/', desc: '全球最大的免费电子图书馆之一，查找和下载学术论文、教科书的重要资源站。', categoryId: 'category-data', iconName: 'book' },
-    { id: 'preset-8', title: 'Wikipedia (维基百科)', url: 'https://www.wikipedia.org/', desc: '自由的多语言网络百科全书，用于快速查询和了解任何专业术语、技术概念。', categoryId: 'category-data', iconName: 'Wikipedia' },
+    { id: 'preset-1', title: 'IEEE Signal Processing Magazine', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=79', desc: '信号处理领域的顶级期刊，提供深入的教程、评论和行业动态，是学习信号处理最新进展的绝佳资源。', categoryId: 'category-tech', iconName: 'signal' },
+    { id: 'preset-2', title: 'IEEE Communications Surveys & Tutorials', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=9739', desc: '通信领域的高影响力综述期刊，提供对各项通信技术全面且深入的概述，是掌握学科体系的最佳选择。', categoryId: 'category-tech', iconName: 'chat' },
+    { id: 'preset-3', title: 'ChatGPT', url: 'https://chatgpt.com/', desc: '作为 OpenAI 面向公众的旗舰语言模型服务，具备优秀的自然语言理解与生成能力，支持多领域知识应用与交互式任务处理，是学习与体验先进对话式 AI 技术的理想平台。', categoryId: 'category-ai', iconName: 'openai' },
+    { id: 'preset-4', title: 'Gemini', url: 'https://gemini.google.com/app', desc: '作为跨模态人工智能领域的前沿代表，它能够无缝处理和理解文字、图像、音频等多种数据格式，提供复杂推理和高效信息整合，是探索多模态前沿技术的有力平台。', categoryId: 'category-ai', iconName: 'star' },
+    { id: 'preset-5', title: 'Google AI Studio', url: 'https://aistudio.google.com/', desc: 'AI开发领域的领先平台，提供快速的原型构建、直观的提示词工程和无缝的API集成，是开发者探索生成式AI能力的绝佳入口。', categoryId: 'category-ai', iconName: 'aistudio' },
+    { id: 'preset-6', title: 'Grok', url: 'https://grok.com', desc: '人工智能领域的顶级AI助手，提供深入的教程、评论和行业动态，是学习人工智能最新进展的绝佳资源。', categoryId: 'category-ai', iconName: 'grok' },
+    { id: 'preset-7', title: 'Z-Library', url: 'https://z-library.sk/', desc: '全球最大的免费电子图书馆之一，查找和下载学术论文、教科书和专业书籍的重要资源站。', categoryId: 'category-data', iconName: 'book' },
+    { id: 'preset-8', title: 'Wikipedia (维基百科)', url: 'https://www.wikipedia.org/', desc: '自由的多语言网络百科全书，用于快速查询和了解任何专业术语、技术概念或历史背景。', categoryId: 'category-data', iconName: 'Wikipedia' },
     { id: 'preset-9', title: 'GitHub (网站仓库)', url: 'https://github.com/Lv-Mansion/221027', desc: '本项目（导航网站）的源代码存放处，您可以访问此链接查看代码或fork。', categoryId: 'category-repo', iconName: 'Github' },
     { id: 'preset-10', title: 'Cloudflare (DNS & CDN)', url: 'https://www.cloudflare.com/', desc: '全球领先的CDN与安全服务商, 本站使用其服务进行DNS解析与全球加速。', categoryId: 'category-repo', iconName: 'cloudflare' },
 ];

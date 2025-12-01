@@ -21,4 +21,4 @@ The webpage is designed using HTML and CSS and is hosted at https://221027.pages
 ---
 
 ## ⚙️ 环境配置 / Environment Setup
-- **编程语言 / Language:** tailwindhtml CSS
+- **编程语言 / Language:** tailwindhtml CSS, Javascript

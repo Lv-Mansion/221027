@@ -1,5 +1,6 @@
 // 图标库 (键值对形式)
 export const ICONS = {
+    // --- 恢复为原始、清晰的通用图标 ---
     'link': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.102 1.101"></path></svg>',
     'signal': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
     'chat': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>',
@@ -10,20 +11,19 @@ export const ICONS = {
     'book': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>',
     'globe': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.7 9a3 3 0 013-3h2.6a3 3 0 013 3v4a3 3 0 01-3 3H10.7a3 3 0 01-3-3V9zM12 21a9 9 0 100-18 9 9 0 000 18z"></path></svg>',
     'github': '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>',
-    'gemini': '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.13 2.43a1.44 1.44 0 0 1 2.54 0l8.86 16.27a1.44 1.44 0 0 1-1.27 2.16H2.74a1.44 1.44 0 0 1-1.27-2.16Zm-1.8 16.14h1.76l.6-1.74h-2.96Zm3.6-7.21L12 6.55l-1.93 4.81h3.86Zm-5.32 5.56 1.15-3.35h5.5l1.15 3.35Z"/></svg>',
-    'cloudflare': '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.1 7.1c-2.3-.6-4.6.3-6.2 2-1.2-1.3-2.8-2.2-4.6-2.2-3.1 0-5.7 2.2-6.1 5.1-.3 1.9.3 3.8 1.6 5.3 2.4 2.6 6 2.8 8.6.5 1.1.2 2.2.3 3.3.3 2.5 0 4.8-1.5 5.8-3.7.9-2 .7-4.2-.4-6zm-1.8 5.7c-.7 1.5-2.3 2.5-4 2.5-1 0-2-.1-2.9-.4-2.8 1.7-6.2 1-8.2-1.4s-1.9-5.4.8-7.1c.5-.3 1.1-.5 1.7-.5 1.5 0 2.9 1 3.8 2.3l.3.4.4-.4c1.3-1.4 3.1-2.2 5-1.9 1.5.2 2.8 1.3 3.3 2.7.6 1.6.4 3.3-.6 4.7z"/></svg>'
+    'cloudflare': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>'
 };
 
 export const DEFAULT_ICON_NAME = 'link';
 
-// 初始链接数据
+// 初始链接数据 (已恢复为原始图标名称)
 export const initialLinks = [
     { id: 'preset-1', title: 'IEEE Signal Processing Magazine', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=79', desc: '信号处理领域的顶级期刊，提供深入的教程、评论和行业动态，是学习信号处理最新进展的绝佳资源。', categoryId: 'category-tech', iconName: 'signal' },
     { id: 'preset-2', title: 'IEEE Communications Surveys & Tutorials', url: 'https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=9739', desc: '通信领域的高影响力综述期刊，提供对各项通信技术全面且深入的概述，是掌握学科体系的最佳选择。', categoryId: 'category-tech', iconName: 'chat' },
-    { id: 'preset-3', title: 'ChatGPT', url: 'https://chatgpt.com/', desc: '作为 OpenAI 面向公众的旗舰语言模型服务，具备优秀的自然语言理解与生成能力，支持多领域知识应用与交互式任务处理，是学习与体验先进对话式 AI 技术的理想平台。', categoryId: 'category-ai', iconName: 'computer' },
-    { id: 'preset-4', title: 'Gemini', url: 'https://gemini.google.com/app', desc: '作为跨模态人工智能领域的前沿代表，它能够无缝处理和理解文字、图像、音频等多种数据格式，提供复杂推理和高效信息整合，是探索多模态前沿技术的有力平台。', categoryId: 'category-ai', iconName: 'gemini' },
-    { id: 'preset-5', title: 'Google AI Studio', url: 'https://aistudio.google.com/', desc: 'AI开发领域的领先平台，提供快速的原型构建、直观的提示词工程和无缝的API集成，是开发者探索生成式AI能力的绝佳入口。', categoryId: 'category-ai', iconName: 'chip' },
-    { id: 'preset-6', title: 'Grok', url: 'https://grok.com', desc: '人工智能领域的顶级AI助手，提供深入的教程、评论和行业动态，是学习人工智能最新进展的绝佳资源。', categoryId: 'category-ai', iconName: 'lightbulb' },
+    { id: 'preset-3', title: 'ChatGPT', url: 'https://chatgpt.com/', desc: '作为 OpenAI 面向公众的旗舰语言模型服务，具备优秀的自然语言理解与生成能力，支持多领域知识应用与交互式任务处理，是学习与体验先进对话式 AI 技术的理想平台。', categoryId: 'category-ai', iconName: 'computer' }, // <-- 恢复为原始图标
+    { id: 'preset-4', title: 'Gemini', url: 'https://gemini.google.com/app', desc: '作为跨模态人工智能领域的前沿代表，它能够无缝处理和理解文字、图像、音频等多种数据格式，提供复杂推理和高效信息整合，是探索多模态前沿技术的有力平台。', categoryId: 'category-ai', iconName: 'star' }, // <-- 恢复为原始图标
+    { id: 'preset-5', title: 'Google AI Studio', url: 'https://aistudio.google.com/', desc: 'AI开发领域的领先平台，提供快速的原型构建、直观的提示词工程和无缝的API集成，是开发者探索生成式AI能力的绝佳入口。', categoryId: 'category-ai', iconName: 'chip' }, // <-- 恢复为原始图标
+    { id: 'preset-6', title: 'Grok', url: 'https://grok.com', desc: '人工智能领域的顶级AI助手，提供深入的教程、评论和行业动态，是学习人工智能最新进展的绝佳资源。', categoryId: 'category-ai', iconName: 'lightbulb' }, // <-- 恢复为原始图标
     { id: 'preset-7', title: 'Z-Library', url: 'https://z-library.sk/', desc: '全球最大的免费电子图书馆之一，查找和下载学术论文、教科书和专业书籍的重要资源站。', categoryId: 'category-data', iconName: 'book' },
     { id: 'preset-8', title: 'Wikipedia (维基百科)', url: 'https://www.wikipedia.org/', desc: '自由的多语言网络百科全书，用于快速查询和了解任何专业术语、技术概念或历史背景。', categoryId: 'category-data', iconName: 'globe' },
     { id: 'preset-9', title: 'GitHub (网站仓库)', url: 'https://github.com/Lv-Mansion/221027', desc: '本项目（导航网站）的源代码存放处，您可以访问此链接查看代码或fork。', categoryId: 'category-repo', iconName: 'github' },

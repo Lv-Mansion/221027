@@ -41,7 +41,7 @@ export const initialLinks = [
     { id: 'preset-5', title: 'Google AI Studio', url: 'https://aistudio.google.com/', desc: '提供快速的原型构建、直观的提示词工程和无缝的API集成。', categoryId: 'category-ai', iconName: 'aistudio' },
     { id: 'preset-6', title: 'Grok', url: 'https://grok.com', desc: '人工智能领域的顶级AI助手，提供深入的教程、评论和行业动态。', categoryId: 'category-ai', iconName: 'grok' },
     { id: 'preset-7', title: 'Z-Library', url: 'https://z-library.sk/', desc: '全球最大的免费电子图书馆之一，查找和下载学术论文、教科书的重要资源站。', categoryId: 'category-data', iconName: 'book' },
-    { id: 'preset-8', title: 'Wikipedia (维基百科)', url: 'https://www.wikipedia.org/', desc: '自由的多语言网络百科全书，用于快速查询和了解任何专业术语、技术概念。', categoryId: 'category-data', iconName: 'wikipedia' },
+    { id: 'preset-8', title: 'Wikipedia (维基百科)', url: 'https://www.wikipedia.org/', desc: '自由的多语言网络百科全书，用于快速查询和了解任何专业术语、技术概念。', categoryId: 'category-data', iconName: 'Wikipedia' },
     { id: 'preset-9', title: 'GitHub (网站仓库)', url: 'https://github.com/Lv-Mansion/221027', desc: '本项目（导航网站）的源代码存放处，您可以访问此链接查看代码或fork。', categoryId: 'category-repo', iconName: 'github' },
     { id: 'preset-10', title: 'Cloudflare (DNS & CDN)', url: 'https://www.cloudflare.com/', desc: '全球领先的CDN与安全服务商, 本站使用其服务进行DNS解析与全球加速。', categoryId: 'category-repo', iconName: 'cloudflare' },
 ];

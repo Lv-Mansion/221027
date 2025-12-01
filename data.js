@@ -21,6 +21,13 @@ export const ICONS = {
     'globe': '<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.7 9a3 3 0 013-3h2.6a3 3 0 013 3v4a3 3 0 01-3 3H10.7a3 3 0 01-3-3V9zM12 21a9 9 0 100-18 9 9 0 000 18z"></path></svg>',
     'github': 'icons/github.png',
     'cloudflare': 'icons/cloudflare.png',
+    'Github': 'icons/Github.png',
+    'Google': 'icons/Google.png',
+    'Wikipedia': 'icons/Wikipedia.png',
+    'Gemini': 'icons/gemini.png',
+    'aistudio': 'icons/aistudio.png',
+    'openai': 'icons/openai.png',
+    'grok': 'icons/grok.png',
 };
 
 export const DEFAULT_ICON_NAME = 'globe';

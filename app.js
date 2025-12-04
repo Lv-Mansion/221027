@@ -1,4 +1,4 @@
-// app.js (最终版)
+// app.js (修改后，解决了边框问题)
 
 import { initialLinks, ICONS, CATEGORIES, DEFAULT_ICON_NAME } from './data.js';
 
@@ -51,36 +51,64 @@ const getIconHTML = (iconIdentifier, altText, className) => {
     return `<img src="${escapeHTML(iconIdentifier)}" alt="${escapeHTML(altText)} icon" class="${className} object-contain">`;
 };
 
+// --- ✨【核心修改区域】 ---
+// 这里是修改后的 renderCard 函数
 const renderCard = (linkData) => {
     const { id, title, url, desc, categoryId, iconName } = linkData;
     const categoryElement = document.getElementById(categoryId)?.querySelector('.card-grid');
     if (!categoryElement) return;
     
+    // 如果已存在同id卡片，先移除
     document.querySelector(`[data-id="${id}"]`)?.remove();
 
-    const cardWrapper = document.createElement('div');
-    cardWrapper.className = 'card-link-wrapper bg-gray-800 rounded-xl shadow-lg border border-gray-700';
-    cardWrapper.dataset.id = id;
+    // 1. 创建一个 <a> 标签作为唯一的卡片元素
+    const cardLink = document.createElement('a');
+    cardLink.href = escapeHTML(url);
+    cardLink.target = '_blank';
+    cardLink.rel = 'noopener noreferrer';
+    cardLink.dataset.id = id;
+
+    // 2. 将所有样式（背景、边框、圆角、内边距等）合并到这一个 <a> 标签上
+    cardLink.className = `
+        card-link-wrapper 
+        relative
+        block 
+        p-6 
+        bg-gray-800 
+        rounded-xl 
+        shadow-lg 
+        border-2 
+        border-yellow-400
+        focus:outline-none 
+        focus:ring-2 
+        focus:ring-offset-2 
+        focus:ring-offset-gray-900 
+        focus:ring-yellow-400
+    `;
 
     const iconIdentifier = ICONS[iconName] || ICONS[DEFAULT_ICON_NAME];
     const iconHTML = getIconHTML(iconIdentifier, title, 'w-8 h-8');
 
-    cardWrapper.innerHTML = `
-        <a href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" class="block p-6 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400">
+    // 3. 将所有内容，包括操作按钮，都放入这个 <a> 标签内部
+    cardLink.innerHTML = `
+        <div>
             <div class="flex items-center justify-center h-14 w-14 rounded-full bg-gray-700 text-gray-300 mb-4">${iconHTML}</div>
             <h3 class="text-xl font-semibold text-white mb-2">${escapeHTML(title)}</h3>
             <p class="text-gray-400 mb-4 text-sm">${escapeHTML(desc)}</p>
             <div class="text-yellow-400 font-medium inline-flex items-center">访问链接
-                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002 2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
             </div>
-        </a>
+        </div>
         <div class="card-actions">
             <button class="card-action-btn edit" aria-label="编辑链接" title="编辑" data-action="edit" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.536L16.732 3.732z"></path></svg></button>
             <button class="card-action-btn delete" aria-label="删除链接" title="删除" data-action="delete" data-id="${id}"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
         </div>
     `;
-    categoryElement.appendChild(cardWrapper);
+
+    // 4. 将最终的卡片元素添加到容器中
+    categoryElement.appendChild(cardLink);
 };
+// --- 【核心修改区域结束】 ---
 
 const renderApp = () => {
     categoriesContainer.innerHTML = '';
@@ -187,17 +215,26 @@ addLinkForm.addEventListener('submit', (e) => {
     hideModal();
 });
 
+// 事件委托需要调整，因为按钮现在在 <a> 标签内
 categoriesContainer.addEventListener('click', (event) => {
     const button = event.target.closest('[data-action]');
     if (!button) return;
-    const { action, id } = button.dataset;
+    
+    // 阻止 <a> 标签的默认跳转行为
+    event.preventDefault(); 
+    
+    const { action } = button.dataset;
+    const card = button.closest('[data-id]');
+    const id = card ? card.dataset.id : null;
+    if (!id) return;
+
     if (action === 'edit') {
         showModal('edit', id);
     } else if (action === 'delete') {
         if (confirm('您确定要删除这个链接吗？此操作无法撤销。')) {
             let links = getLinks().filter(link => link.id !== id);
             saveLinks(links);
-            document.querySelector(`[data-id="${id}"]`)?.remove();
+            card.remove();
         }
     }
 });
